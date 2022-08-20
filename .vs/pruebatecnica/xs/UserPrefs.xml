@@ -1,0 +1,32 @@
+﻿<Properties StartupConfiguration="{7D986044-678A-4764-B581-54F53B6841EB}|Default">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="Android.Pixel_3_XL_API_32" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="pruebatecnica/pruebatecnica/MainPage.xaml">
+    <Files>
+      <File FileName="pruebatecnica/pruebatecnica/MainPage.xaml.cs" Line="1" Column="1" />
+      <File FileName="pruebatecnica/pruebatecnica/MainPage.xaml" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="pruebatecnica" expanded="True">
+            <Node name="pruebatecnica" expanded="True">
+              <Node name="MainPage.xaml" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+      <Pad Id="MonoDevelop.Debugger.WatchPad">
+        <State />
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.pruebatecnica.Android FirstBuild="True" PreferredExecutionTarget="Android.Pixel_3_XL_API_32" />
+  <MonoDevelop.Ide.ItemProperties.pruebatecnica FirstBuild="True" />
+  <MonoDevelop.Ide.ItemProperties.pruebatecnica.iOS FirstBuild="True" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+</Properties>
