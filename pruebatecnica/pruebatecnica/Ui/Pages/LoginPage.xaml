@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:pruebatecnica.Controls"
+    x:Class="pruebatecnica.Ui.Pages.LoginPage">
+    <ContentPage.Content >
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+
+
+            <StackLayout Padding="0">
+                <Frame Background="azure" HeightRequest="250" HorizontalOptions="FillAndExpand">
+                    <StackLayout>
+                        <Label Text="Prueba Tecnica"
+                           FontAttributes="Bold"
+                           FontSize="35"/>
+                        <Image Source="pruebatecnica.png"
+                               VerticalOptions="CenterAndExpand"
+                               HeightRequest="200"/>
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+
+            <StackLayout Margin="15,270,15,0">
+                <Frame HasShadow="True" CornerRadius="15" BackgroundColor="azure" HorizontalOptions="FillAndExpand" HeightRequest="400" >
+                    <StackLayout>
+                        <StackLayout HorizontalOptions="CenterAndExpand">
+                            <Label Text="Login" FontSize="Title" FontAttributes="Bold"/>
+
+                        </StackLayout>
+
+                        <StackLayout Margin="0,12,0,0" >
+                            <local:StandardEntry Text="{Binding User}" Placeholder="Username"
+                                                 HeightRequest="60"
+                                                 Padding="12,0,0,0"/>
+                            <local:StandardEntry Text="{Binding Pass}" Placeholder="Password"
+                                                 HeightRequest="60"
+                                                 Padding="12,0,0,0"/>
+
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" >
+                            <CheckBox IsChecked="{Binding Remember}" Color="Blue"/>
+                            <Label Text="Remember" VerticalOptions="Center"/>
+                            <Label Text="Registrate"
+                                   TextColor="Blue"
+                                   HorizontalOptions="EndAndExpand"
+                                   VerticalOptions="Center"
+                                   >
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding NewUserCommand}"/>
+
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </StackLayout>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="9*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="2.5*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+
+                            <Button Text="Login" Command="{Binding LoginCommand}" Grid.Column="0" BackgroundColor="Blue" BorderColor="Black" TextColor="White" BorderWidth="1"  />
+                            <Button ImageSource="fingerprint.png" Command="{Binding BiometricsCommand}" Grid.Column="2" BackgroundColor="White" BorderColor="blue"  BorderWidth="1"  />
+
+                        </Grid>
+
+                    </StackLayout>
+                </Frame>
+
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
+
