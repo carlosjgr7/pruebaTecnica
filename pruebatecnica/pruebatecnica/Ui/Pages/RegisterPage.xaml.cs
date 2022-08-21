@@ -12,6 +12,10 @@ namespace pruebatecnica.Ui.Pages
             InitializeComponent();
             BindingContext = new RegisterViewModel(Navigation);
         }
+
+       
+
+
     }
 }
 

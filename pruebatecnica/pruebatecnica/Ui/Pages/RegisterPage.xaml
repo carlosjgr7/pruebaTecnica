@@ -2,12 +2,93 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    x:Class="pruebatecnica.Ui.Pages.RegisterPage">
+    xmlns:local="clr-namespace:pruebatecnica.Controls"
+    xmlns:behaviorsPack="clr-namespace:Xamarin.Forms.BehaviorsPack;assembly=Xamarin.Forms.BehaviorsPack"
+    x:Class="pruebatecnica.Ui.Pages.RegisterPage"
+   >
     <Grid>
-        <Label Text="todo ok"
-               VerticalOptions="CenterAndExpand"
-               HorizontalOptions="CenterAndExpand"/>
+        <StackLayout Margin="10" >
+            <Label Text="Registro Rapido"
+                   FontAttributes="Bold"
+                   FontSize="40"
+                   TextColor="DarkCyan"/>
+            <Label Text="{Binding Message}"
+                           TextColor="#A5A4A6"
+                           FontAttributes="Italic"
+                           />
+            <Frame VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="Center"
+                   HeightRequest="370"
+                   WidthRequest="370"
 
+                   >
+                <StackLayout Spacing="20">
+                    <Frame HeightRequest="60"
+                           BorderColor="{Binding BorderUser}"
+                           CornerRadius="5"
+                           HasShadow="False"
+                           Padding="0"
+                           >
+                        <Entry Placeholder="Username"
+                                           Text="{Binding User}"
+                               
+                                           >
+                            <Entry.Behaviors>
+                                <behaviorsPack:EventToCommandBehavior
+                                EventName="TextChanged"
+                                Command="{Binding ItemChangeCommand}"
+                                />
+                            </Entry.Behaviors>
+                        </Entry>
+                    </Frame>
+                    <Frame HeightRequest="60"
+                           BorderColor="{Binding BorderPass}"
+                           CornerRadius="5"
+                           HasShadow="False"
+                           Padding="0"
+                           >
+                        <Entry Placeholder="Password"
+                                         HeightRequest="60"
+                                         Text="{Binding Pass}"
+                                         >
+                            <Entry.Behaviors>
+                                <behaviorsPack:EventToCommandBehavior
+                                EventName="TextChanged"
+                                Command="{Binding PassChangeCommand}"
+                                />
+                            </Entry.Behaviors>
+                        </Entry>
+                    </Frame>
+
+                    <Frame HeightRequest="60"
+                           BorderColor="{Binding BorderRepeatPass}"
+                           CornerRadius="5"
+                           HasShadow="False"
+                           Padding="0"
+                           >
+                        <Entry Placeholder="Repeat Password"
+                                         HeightRequest="60"
+                                         Text="{Binding RepeatPass}"
+                                         >
+                            <Entry.Behaviors>
+                                <behaviorsPack:EventToCommandBehavior
+                                EventName="TextChanged"
+                                Command="{Binding RepeatPassChangeCommand}"
+                                />
+                            </Entry.Behaviors>
+                        </Entry>
+                    </Frame>
+                    <Button Background="LightBlue"
+                            Text="Registrate"
+                            HeightRequest="50"
+                            VerticalOptions="EndAndExpand"
+                            Command="{Binding RegisterCommand}"/>
+
+                </StackLayout>
+            </Frame>
+
+
+        </StackLayout>
     </Grid>
 </ContentPage>
 

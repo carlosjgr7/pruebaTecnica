@@ -15,6 +15,8 @@
     <PackageReference Include="Xamarin.Essentials" Version="1.7.0" />
     <PackageReference Include="Refit" Version="6.3.2" />
     <PackageReference Include="PropertyChanged.Fody" Version="3.4.1" />
+    <PackageReference Include="Xamarin.Forms.BehaviorsPack" Version="3.0.0" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Ui\" />
@@ -23,11 +25,22 @@
     <None Remove="Refit" />
     <None Remove="PropertyChanged.Fody" />
     <None Remove="Controls\" />
+    <None Remove="Xamarin.Forms.BehaviorsPack" />
+    <None Remove="SQLite.Net-PCL" />
+    <None Remove="Models\" />
+    <None Remove="Data\" />
+    <None Remove="Data\Local\" />
+    <None Remove="Data\Network\" />
+    <None Remove="sqlite-net-pcl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Ui\" />
     <Folder Include="Ui\Pages\" />
     <Folder Include="Ui\ViewModel\" />
     <Folder Include="Controls\" />
+    <Folder Include="Models\" />
+    <Folder Include="Data\" />
+    <Folder Include="Data\Local\" />
+    <Folder Include="Data\Network\" />
   </ItemGroup>
 </Project>

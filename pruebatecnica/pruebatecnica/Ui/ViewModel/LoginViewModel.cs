@@ -18,7 +18,14 @@ namespace pruebatecnica.Ui.ViewModel
         public Command NewUserCommand => new Command(async () =>
         {
             await navigation.PushAsync(new RegisterPage());
+          
         });
+        public Command BiometricsCommand => new Command(async () =>
+        {
+            var test = await App.Database.GetUsersAsync();
+            Console.WriteLine("hello " + test[0].Username);
+        });
+        
     }
 }
 
