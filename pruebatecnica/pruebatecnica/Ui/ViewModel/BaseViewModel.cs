@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Essentials;
 
 namespace pruebatecnica.Ui.ViewModel
 {
@@ -87,6 +88,51 @@ namespace pruebatecnica.Ui.ViewModel
             backingFieled = value;
 
             OnPropertyChanged(propertyName);
+        }
+
+        bool _conectado;
+        bool _sinconexion;
+
+        public bool Conectado
+        {
+            get { return _conectado; }
+            set
+            {
+                SetValue(ref this._conectado, value);
+            }
+        }
+        public bool SinConexion
+        {
+            get { return _sinconexion; }
+            set
+            {
+                SetValue(ref this._sinconexion, value);
+            }
+        }
+        public void Probarconexion()
+        {
+            if(Connectivity.NetworkAccess!= NetworkAccess.Internet)
+            {
+                Conectado = false;
+                SinConexion = true;
+            }
+            else
+            {
+                Conectado = true;
+                SinConexion = false;
+            }
+        }
+        public void Validarconexioninternet()
+        {
+            var time = TimeSpan.FromSeconds(1);
+            Device.StartTimer(time, () =>
+            {
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    Probarconexion();
+                });
+                return true;
+            });
         }
     }
 }

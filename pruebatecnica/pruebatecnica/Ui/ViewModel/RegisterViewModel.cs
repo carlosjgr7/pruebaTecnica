@@ -66,7 +66,6 @@ namespace pruebatecnica.Ui.ViewModel
                     Pass = Pass
 
                 });
-                var test = await App.Database.GetUsersAsync();
                 await navigation.PopAsync();
             }
            

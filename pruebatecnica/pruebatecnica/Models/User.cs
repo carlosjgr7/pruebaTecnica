@@ -2,6 +2,7 @@
 using SQLite;
 namespace pruebatecnica.Models
 {
+    [Table("User")]
     public class User
     {
         [PrimaryKey,AutoIncrement]

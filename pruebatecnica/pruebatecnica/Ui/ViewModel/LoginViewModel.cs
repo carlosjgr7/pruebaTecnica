@@ -4,6 +4,7 @@ using pruebatecnica.Data.Network.Interfaces;
 using pruebatecnica.Models;
 using pruebatecnica.Ui.Pages;
 using pruebatecnica.Utils;
+using pruebatecnica.Data.Local;
 using Refit;
 using Xamarin.Forms;
 
@@ -27,10 +28,8 @@ namespace pruebatecnica.Ui.ViewModel
         });
         public Command BiometricsCommand => new Command(async () =>
         {
-         
-            var api = RestService.For<IProducts>(StaticValue.baseUrl);
-            var result = await api.GetProducts();
-            await navigation.PushAsync(new ListPage(result));
+           
+            await navigation.PushAsync(new ListPage());
 
         });
         public Command LoginCommand => new Command(async () =>

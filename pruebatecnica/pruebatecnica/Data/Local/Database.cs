@@ -11,23 +11,53 @@ namespace pruebatecnica.Data.Local
         {
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<User>().Wait();
-            _database.CreateTablesAsync<Root, Rating>().Wait();
-                       
+            _database.CreateTableAsync<Rating>().Wait();
+            _database.CreateTableAsync<Product>().Wait();
+
+
 
         }
-        public  Task<List<User>> GetUsersAsync()
+        public  async Task<List<User>> GetUsersAsync()
         {
-            return _database.Table<User>().ToListAsync();
+            return await _database.Table<User>()
+                    .ToListAsync();
         }
 
         public Task<int> SaveUsersAsync(User user)
         {
-            return _database.InsertAsync(user);
+            return _database
+                    .InsertAsync(user);
         }
 
-        public Task<List<Root>> GetProductsAsync()
+        public async Task<int> SaveProductAsync(Product product)
         {
-            return _database.Table<Root>().ToListAsync();
+           return await  _database
+                    .InsertAsync(product);
+        }
+
+        public async Task<int> SaveRatingAsync(Rating rating)
+        {
+            return await _database
+                    .InsertAsync(rating);
+        }
+
+        public async Task<List<Product>> GetProductsAsync()
+        {
+            return await _database.Table<Product>()
+                    .ToListAsync();
+        }
+
+        public async Task<Rating> GetRatingsAsync(int id)
+        {
+            return await _database.Table<Rating>()
+                        .Where(x=>x.id==id)
+                        .FirstOrDefaultAsync();
+        }
+
+        public async Task DeleteRegisters()
+        {
+            await _database.Table<Product>().DeleteAsync(x=>x.id!=null);
+            await _database.Table<Rating>().DeleteAsync(x =>x.id != null);
         }
     }
 }

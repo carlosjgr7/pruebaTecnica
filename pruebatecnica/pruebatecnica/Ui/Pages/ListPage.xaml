@@ -10,26 +10,51 @@
             <selector:SelectorTemplate x:Key="ProductTemplate"/>
         </ResourceDictionary>
     </ContentPage.Resources>
-    <CollectionView ItemsSource="{Binding ListProducts}"
-                    ItemTemplate="{StaticResource ProductTemplate}"
-                    x:Name="collectionItems">
-        <CollectionView.EmptyView>
-            <StackLayout Orientation='Vertical' >
-                
-                <Image Source="triste.png"
-                       HeightRequest="300"
-                      
-                       />
-                <Label Text="Lo siento no tienes internet"
-                       HorizontalOptions="Center"
-                       TextColor="#cdcdcd"
-                       FontAttributes="Italic"/>
+    <Grid>
+        <CollectionView ItemsSource="{Binding ListProducts}"
+                        ItemTemplate="{StaticResource ProductTemplate}"
+                        x:Name="collectionItems"
+                        IsVisible="{Binding Network}">
 
-            </StackLayout>
-        </CollectionView.EmptyView>
-        <CollectionView.Resources>
-            <DataTemplate x:Key="productWithStar">
-                <StackLayout >
+            <CollectionView.Resources>
+                <DataTemplate x:Key="productWithStar">
+                    <StackLayout >
+                        <Grid >
+                            <Frame HeightRequest="120">
+                                <StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Source="{Binding image}"
+                                      HeightRequest="100"
+                                      WidthRequest="80"
+                                      HorizontalOptions="Start"
+                                      />
+                                        <StackLayout>
+                                            <Label Text="{Binding title}"
+                                           FontSize="14"
+                                           FontAttributes="Bold"/>
+                                            <Label Text="{Binding category}"/>
+                                            <Label Text="{Binding price,StringFormat='$ {0:F2}'}"/>
+
+                                        </StackLayout>
+                                        <Image Source="start.png"
+                                           HeightRequest="30"
+                                           HorizontalOptions="EndAndExpand"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                            <Grid.GestureRecognizers>
+                                <TapGestureRecognizer
+                                Command="{Binding
+                                Path=BindingContext.ToDetailPageCommand,
+                                Source={x:Reference collectionItems}}"
+                                CommandParameter="{Binding .}"
+                                />
+                            </Grid.GestureRecognizers>
+                        </Grid>
+
+                    </StackLayout>
+                </DataTemplate>
+                <DataTemplate x:Key="productWithOutStar">
                     <Grid >
                         <Frame HeightRequest="120">
                             <StackLayout>
@@ -47,9 +72,6 @@
                                         <Label Text="{Binding price,StringFormat='$ {0:F2}'}"/>
 
                                     </StackLayout>
-                                    <Image Source="start.png"
-                                           HeightRequest="30"
-                                           HorizontalOptions="EndAndExpand"/>
                                 </StackLayout>
                             </StackLayout>
                         </Frame>
@@ -62,42 +84,28 @@
                                 />
                         </Grid.GestureRecognizers>
                     </Grid>
+                </DataTemplate>
 
-                </StackLayout>
-            </DataTemplate>
-            <DataTemplate x:Key="productWithOutStar">
-                <Grid >
-                    <Frame HeightRequest="120">
-                        <StackLayout>
-                            <StackLayout Orientation="Horizontal">
-                                <Image Source="{Binding image}"
-                                      HeightRequest="100"
-                                      WidthRequest="80"
-                                      HorizontalOptions="Start"
-                                      />
-                                <StackLayout>
-                                    <Label Text="{Binding title}"
-                                           FontSize="14"
-                                           FontAttributes="Bold"/>
-                                    <Label Text="{Binding category}"/>
-                                    <Label Text="{Binding price,StringFormat='$ {0:F2}'}"/>
+            </CollectionView.Resources>
+        </CollectionView>
+        <StackLayout IsVisible="{Binding WithoutNet}" VerticalOptions="Center">
+            <StackLayout Orientation="Vertical"  >
 
-                                </StackLayout>
-                            </StackLayout>
-                        </StackLayout>
-                    </Frame>
-                    <Grid.GestureRecognizers>
-                        <TapGestureRecognizer
-                                Command="{Binding
-                                Path=BindingContext.ToDetailPageCommand,
-                                Source={x:Reference collectionItems}}"
-                                CommandParameter="{Binding .}"
-                                />
-                    </Grid.GestureRecognizers>
-                </Grid>
-            </DataTemplate>
+                <Image Source="triste.png"
+                       HeightRequest="200"
+                       
+                      
+                       />
+                <Label Text="Lo siento no tienes internet"
+                       HorizontalOptions="Center"
+                       TextColor="#cdcdcd"
+                       FontAttributes="Italic"/>
+                <Button Text="Salir"
+                        Command="{Binding ToLoginCommand}"/>
 
-        </CollectionView.Resources>
-    </CollectionView>
+            </StackLayout>
+
+        </StackLayout>
+    </Grid>
 </ContentPage>
 

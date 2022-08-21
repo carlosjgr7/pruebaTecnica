@@ -7,10 +7,10 @@ namespace pruebatecnica.Ui.Pages
 {
     public partial class ListPage : ContentPage
     {
-        public ListPage(List<Models.Root> result)
+        public ListPage()
         {
             InitializeComponent();
-            BindingContext = new ListPageViewModel(Navigation, result);
+            BindingContext = new ListPageViewModel(Navigation);
         }
     }
 }
