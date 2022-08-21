@@ -22,8 +22,10 @@ namespace pruebatecnica.Ui.ViewModel
         public ListPageViewModel(INavigation navigation)
         {
             this.navigation = navigation;
+            IsBusy = true;
             LoadFakeProducts();
             init();
+           
 
         }
 
@@ -55,7 +57,7 @@ namespace pruebatecnica.Ui.ViewModel
                 var listprod = await local.GetPoductsList();
                 ListProducts = listprod;
             }
-
+            IsBusy = false;
         }
 
         private void LoadFakeProducts()
@@ -65,9 +67,9 @@ namespace pruebatecnica.Ui.ViewModel
             {
                 prood.Add(new Root()
                 {
-                    title = "aaaaaaaaaaa",
-                    category = "aaaaaaaaaaaa",
-                    image = "https://i.ibb.co/54d3grJ/car.png",
+                    title = "cadenaparacolocarelskeletonviewbien",
+                    category = "cadenaparacolocarelskeletonviewbien",
+                    image = "",
                     description="",
                     price=1,
                     rating=new Rating() { id=1,count=1,rate=1},

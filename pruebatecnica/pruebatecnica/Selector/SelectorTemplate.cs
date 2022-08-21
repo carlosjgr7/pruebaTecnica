@@ -13,10 +13,12 @@ namespace pruebatecnica.Selector
             if (container != null)
             {
                 var product = item as Root;
+                if (product.title.Contains("cadenaparacolocarelskeletonviewbien"))
+                    return (DataTemplate)collection.Resources["loadingProducts"];
+
                 if (product.rating.rate >= 4)
-                {
-                    return (DataTemplate)collection.Resources["productWithStar"];
-                }
+                   return (DataTemplate)collection.Resources["productWithStar"];
+                
 
                 return (DataTemplate)collection.Resources["productWithOutStar"];
             }

@@ -2,6 +2,7 @@
 <ContentPage
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Detalle de Producto"
     x:Class="pruebatecnica.Ui.Pages.DetailPage"
     >
     <Grid ColumnDefinitions="*,*" RowDefinitions="300,*" Margin="20">

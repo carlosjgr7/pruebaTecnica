@@ -3,7 +3,10 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:selector="clr-namespace:pruebatecnica.Selector"
-    x:Class="pruebatecnica.Ui.Pages.ListPage">
+    x:Class="pruebatecnica.Ui.Pages.ListPage"
+    xmlns:sk="clr-namespace:Xamarin.Forms.Skeleton;assembly=Xamarin.Forms.Skeleton"
+    Title="Productos"
+    x:Name="ListPaage">
 
     <ContentPage.Resources>
         <ResourceDictionary>
@@ -11,16 +14,24 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <Grid>
+        
         <CollectionView ItemsSource="{Binding ListProducts}"
                         ItemTemplate="{StaticResource ProductTemplate}"
                         x:Name="collectionItems"
-                        IsVisible="{Binding Network}">
+                        IsVisible="{Binding Network}"
+                        sk:Skeleton.Animation="{sk:DefaultAnimation Fade}"
+                        sk:Skeleton.IsBusy="{Binding IsBusy}"
+                        sk:Skeleton.IsParent="{Binding IsBusy}"
+                        
+                        >
 
             <CollectionView.Resources>
                 <DataTemplate x:Key="productWithStar">
-                    <StackLayout >
+                    <StackLayout>
                         <Grid >
-                            <Frame HeightRequest="120">
+                            <Frame HeightRequest="120"
+                                   Margin="5"
+                                   CornerRadius="5">
                                 <StackLayout>
                                     <StackLayout Orientation="Horizontal">
                                         <Image Source="{Binding image}"
@@ -51,25 +62,33 @@
                                 />
                             </Grid.GestureRecognizers>
                         </Grid>
-
                     </StackLayout>
                 </DataTemplate>
+
                 <DataTemplate x:Key="productWithOutStar">
                     <Grid >
-                        <Frame HeightRequest="120">
+                        <Frame HeightRequest="120"
+                               Margin="5"
+                               CornerRadius="5">
                             <StackLayout>
                                 <StackLayout Orientation="Horizontal">
                                     <Image Source="{Binding image}"
                                       HeightRequest="100"
                                       WidthRequest="80"
                                       HorizontalOptions="Start"
+    
                                       />
                                     <StackLayout>
                                         <Label Text="{Binding title}"
                                            FontSize="14"
-                                           FontAttributes="Bold"/>
-                                        <Label Text="{Binding category}"/>
-                                        <Label Text="{Binding price,StringFormat='$ {0:F2}'}"/>
+                                           FontAttributes="Bold"
+                                               />
+                                        <Label Text="{Binding category}"
+
+                                               />
+                                        <Label Text="{Binding price,StringFormat='$ {0:F2}'}"
+                                               
+                                               />
 
                                     </StackLayout>
                                 </StackLayout>
@@ -83,6 +102,42 @@
                                 CommandParameter="{Binding .}"
                                 />
                         </Grid.GestureRecognizers>
+                    </Grid>
+                </DataTemplate>
+
+                <DataTemplate x:Key="loadingProducts">
+                    <Grid >
+                        <Frame HeightRequest="120">
+                            <StackLayout>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="{Binding image}"
+                                      HeightRequest="100"
+                                      WidthRequest="80"
+                                      HorizontalOptions="Start"
+
+                                        sk:Skeleton.BackgroundColor="#f0f0f0"
+                                        sk:Skeleton.IsBusy="True"
+                                      />
+                                    <StackLayout>
+                                        <Label Text="{Binding title}"
+                                           FontSize="14"
+                                           FontAttributes="Bold"
+                                           sk:Skeleton.BackgroundColor="#f0f0f0"
+                                           sk:Skeleton.IsBusy="True"
+                                               />
+                                        <Label Text="{Binding category}"
+                                               sk:Skeleton.BackgroundColor="#f0f0f0"
+                                               sk:Skeleton.IsBusy="True"
+                                               />
+                                        <Label Text="{Binding price,StringFormat='$ {0:F2}'}"
+                                               sk:Skeleton.BackgroundColor="#f0f0f0"
+                                               sk:Skeleton.IsBusy="True"
+                                               />
+
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </Frame>
                     </Grid>
                 </DataTemplate>
 

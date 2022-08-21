@@ -3,11 +3,13 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:pruebatecnica.Controls"
+    Title="Login"
+
     x:Class="pruebatecnica.Ui.Pages.LoginPage">
     <ContentPage.Content >
         <Grid>
             <StackLayout Padding="0">
-                <Frame Background="Aqua" HeightRequest="250" HorizontalOptions="FillAndExpand">
+                <Frame Background="#52A6DC" HeightRequest="250" HorizontalOptions="FillAndExpand">
                     <StackLayout>
                         <Label Text="Prueba Tecnica"
                            FontAttributes="Bold"
@@ -19,7 +21,7 @@
                 </Frame>
             </StackLayout>
             <StackLayout Margin="15,270,15,0">
-                <Frame HasShadow="True" CornerRadius="15" BackgroundColor="azure" HorizontalOptions="FillAndExpand" HeightRequest="350" >
+                <Frame HasShadow="True" CornerRadius="15" BorderColor="blue" HorizontalOptions="FillAndExpand" HeightRequest="350" >
                     <StackLayout>
                         <StackLayout HorizontalOptions="CenterAndExpand">
                             <Label Text="Login" FontSize="Title" FontAttributes="Bold"/>

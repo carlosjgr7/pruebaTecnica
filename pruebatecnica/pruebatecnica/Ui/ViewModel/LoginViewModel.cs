@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Linq;
-using pruebatecnica.Data.Network.Interfaces;
-using pruebatecnica.Models;
+using Plugin.Fingerprint;
+using Plugin.Fingerprint.Abstractions;
 using pruebatecnica.Ui.Pages;
 using pruebatecnica.Utils;
-using pruebatecnica.Data.Local;
-using Refit;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace pruebatecnica.Ui.ViewModel
@@ -15,9 +14,11 @@ namespace pruebatecnica.Ui.ViewModel
         private INavigation navigation;
         public String User { get; set; }
         public String Pass { get; set; }
-        public Boolean Remember { get; set; }
+        public bool Remember { get; set; }
         public LoginViewModel(INavigation navigation)
         {
+            User = Preferences.Get(Prefer.User, "");
+            Pass = Preferences.Get(Prefer.Pass, "");
             this.navigation = navigation;
         }
 
@@ -28,20 +29,48 @@ namespace pruebatecnica.Ui.ViewModel
         });
         public Command BiometricsCommand => new Command(async () =>
         {
-           
-            await navigation.PushAsync(new ListPage());
+            if(Preferences.Get(Prefer.User, "") == "")
+            {
+                await DisplayAlert("Error", "No existen datos biometricos guardados", "Ok");
+                return;
+
+            }
+            var availibility = await
+                CrossFingerprint.Current.IsAvailableAsync();
+            if (!availibility)
+            {
+                await DisplayAlert("Error", "No tienes sistemas biommetricos disponibles", "Ok");
+                return;
+            }
+
+            var authResult = await
+                CrossFingerprint.Current.AuthenticateAsync(new AuthenticationRequestConfiguration(
+                    "Verifique su identidad", "Confirma tu huella para continuar!"));
+
+            if (authResult.Authenticated)
+            {
+                User = Preferences.Get(Prefer.User, "");
+                Pass = Preferences.Get(Prefer.Pass, "");
+                LoginCommand.Execute(null);
+            }
 
         });
         public Command LoginCommand => new Command(async () =>
         {
+
             var user = (from item in (await App.Database.GetUsersAsync())
                         where item.Username == User
                         where item.Pass == Pass
                         select item).FirstOrDefault();
 
-            if (user!=null)
+            if (user != null)
             {
-                await navigation.PushAsync(new RegisterPage());
+                if (Remember)
+                {
+                    Preferences.Set(Prefer.User, User);
+                    Preferences.Set(Prefer.Pass, Pass);
+                }
+                await navigation.PushAsync(new ListPage());
             }
             else
             {
@@ -51,4 +80,7 @@ namespace pruebatecnica.Ui.ViewModel
         });
     }
 }
+
+
+
 
