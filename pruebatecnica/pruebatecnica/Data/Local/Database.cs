@@ -11,6 +11,9 @@ namespace pruebatecnica.Data.Local
         {
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<User>().Wait();
+            _database.CreateTablesAsync<Root, Rating>().Wait();
+                       
+
         }
         public  Task<List<User>> GetUsersAsync()
         {
@@ -20,6 +23,11 @@ namespace pruebatecnica.Data.Local
         public Task<int> SaveUsersAsync(User user)
         {
             return _database.InsertAsync(user);
+        }
+
+        public Task<List<Root>> GetProductsAsync()
+        {
+            return _database.Table<Root>().ToListAsync();
         }
     }
 }

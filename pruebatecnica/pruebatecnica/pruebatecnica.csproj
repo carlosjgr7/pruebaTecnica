@@ -32,6 +32,9 @@
     <None Remove="Data\Local\" />
     <None Remove="Data\Network\" />
     <None Remove="sqlite-net-pcl" />
+    <None Remove="Data\Network\Interfaces\" />
+    <None Remove="Utils\" />
+    <None Remove="Selector\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Ui\" />
@@ -42,5 +45,8 @@
     <Folder Include="Data\" />
     <Folder Include="Data\Local\" />
     <Folder Include="Data\Network\" />
+    <Folder Include="Data\Network\Interfaces\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Selector\" />
   </ItemGroup>
 </Project>

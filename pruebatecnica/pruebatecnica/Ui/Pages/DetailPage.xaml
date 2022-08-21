@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="pruebatecnica.Ui.Pages.DetailPage"
+    >
+    <Grid ColumnDefinitions="*,*" RowDefinitions="300,*" Margin="20">
+        <StackLayout>
+            <Image Source="{Binding Item.image}"
+               HeightRequest="270"
+               />
+        </StackLayout>
+        <StackLayout Grid.Column="1"  Spacing="20" VerticalOptions="Start">
+
+            <Label Text="{Binding Item.category}"
+               FontAttributes="Bold"
+               TextTransform="Uppercase"
+               FontSize="20"
+               Margin="0,40,0,0"
+               />
+            <Label Text="{Binding Item.price,StringFormat=' ${0:F2}'}"
+                   FontAttributes="Bold"
+                   FontSize="30"
+                   
+               />
+            <StackLayout Orientation="Horizontal">
+                <Label Text="{Binding Item.rating.rate, StringFormat='Rating {0:F2}'}"
+               FontAttributes="Bold"
+                       FontSize="20"/>
+
+                <Image Source="start.png"
+                   HeightRequest="30"
+                   Margin="0,-10,0,0"
+                   />
+            </StackLayout>
+        </StackLayout>
+        <StackLayout Grid.ColumnSpan="2" Grid.Row="1" Spacing="30">
+            <Label Text="{Binding Item.title}"
+                   FontAttributes="Bold"
+               />
+            <Frame 
+                   CornerRadius="5"
+                   BorderColor="#cdcdcd"
+                   >
+                <StackLayout>
+                    <Label Text="Descripcion"
+                   Margin="5,0,0,0"
+                   FontAttributes="Bold"
+                   FontSize="20"/>
+                    <BoxView HeightRequest="1" BackgroundColor="#cdcdcd"/>
+                    <ScrollView>
+                        <Label Text="{Binding Item.description}"
+                           FontSize="Default"/>
+
+                    </ScrollView>
+                </StackLayout>
+
+            </Frame>
+        </StackLayout>
+    </Grid>
+</ContentPage>
+
