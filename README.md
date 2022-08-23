@@ -1,7 +1,7 @@
 # pruebatecnica
 proyecto realizado en xamarin formos sin frameworks
 
-#Funcionalidades
+# Funcionalidades
 
 - Modulo de register (registra en base de datos local)
 - Modulo de Login
