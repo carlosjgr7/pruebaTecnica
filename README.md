@@ -1,5 +1,5 @@
 # pruebatecnica
-proyecto realizado en xamarin formos sin frameworks
+proyecto realizado en xamarin forms sin el uso de frameworks
 
 # Funcionalidades
 
