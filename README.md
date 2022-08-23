@@ -11,3 +11,4 @@ proyecto realizado en xamarin forms sin el uso de frameworks
 - Consultas http con refit
 - Carga de datos offline
 - Verificacion de Conexion a internet
+- Vista de detalles del producto
